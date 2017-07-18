@@ -33,7 +33,8 @@ public class Sample7Activity extends AppCompatActivity implements Sample7Contrac
 
     private Sample7Contract.Presenter presenter;
 
-    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample_rx);
         if (getSupportActionBar() != null) {
@@ -50,7 +51,8 @@ public class Sample7Activity extends AppCompatActivity implements Sample7Contrac
         textView = (TextView) findViewById(R.id.text_sampleRx_list);
         AppCompatButton buttonGenerate = (AppCompatButton) findViewById(R.id.button_sampleRx_generate);
         buttonGenerate.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
                 // Call Presenter Method
                 presenter.createList();
             }
@@ -58,7 +60,8 @@ public class Sample7Activity extends AppCompatActivity implements Sample7Contrac
     }
 
     // Called by Presenter
-    @Override @SuppressWarnings("SetTextI18n")
+    @Override
+    @SuppressWarnings("SetTextI18n")
     public void showList(String item) {
         textView.setText(textView.getText() + "\n" + item);
 

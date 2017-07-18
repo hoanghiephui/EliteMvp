@@ -19,7 +19,8 @@ package com.jemshit.elitemvpsample.sample_1_basic_presenter;
 
 class Sample1Presenter extends Sample1Contract.Presenter {
 
-    @Override public void calculateSum(int input1, int input2) {
+    @Override
+    public void calculateSum(int input1, int input2) {
         if (isViewAttached())
             getView().showSum(String.valueOf(input1 + input2));
     }

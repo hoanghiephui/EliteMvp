@@ -21,19 +21,42 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.jemshit.elitemvp.RxBus;
+import com.jemshit.elitemvp.view.activitys.BaseActivity;
 import com.jemshit.elitemvpsample.R;
 
-public class Sample4Activity extends AppCompatActivity implements Sample4Contract.View {
+public class Sample4Activity extends BaseActivity implements Sample4Contract.View {
+    private static final String TAG = Sample4Activity.class.getSimpleName();
     private TextView textView;
 
     private Sample4Contract.Presenter presenter;
 
-    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sample_rx);
+    // Called by Presenter
+    @Override
+    @SuppressWarnings("SetTextI18n")
+    public void showList(String item) {
+        textView.setText(textView.getText() + "\n" + item);
+    }
+
+    // Destroy (Detach View from) Presenter. Also unsubscribes from Subscriptions
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_sample_rx;
+    }
+
+    @Override
+    protected void initOnCreate(Bundle savedInstanceState) {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(getString(R.string.example_rx2));
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -48,24 +71,21 @@ public class Sample4Activity extends AppCompatActivity implements Sample4Contrac
         textView = (TextView) findViewById(R.id.text_sampleRx_list);
         AppCompatButton buttonGenerate = (AppCompatButton) findViewById(R.id.button_sampleRx_generate);
         buttonGenerate.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
                 // Call Presenter Method
                 presenter.createList();
+                RxBus.getInstance().sendEvent("a");
             }
         });
     }
 
-    // Called by Presenter
-    @Override @SuppressWarnings("SetTextI18n")
-    public void showList(String item) {
-        textView.setText(textView.getText() + "\n" + item);
-    }
-
-    // Destroy (Detach View from) Presenter. Also unsubscribes from Subscriptions
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        presenter.onDestroy();
+    protected void onSubscribeEvent(Object object) {
+        if (object == "a") {
+            Toast.makeText(this, "A", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "onSubscribeEvent: ");
+        }
     }
 
 }

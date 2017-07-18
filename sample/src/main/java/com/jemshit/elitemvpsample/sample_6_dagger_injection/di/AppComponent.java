@@ -25,12 +25,13 @@ import dagger.Component;
 @Component(modules = AppScopeActivityBinder.class)
 public interface AppComponent {
 
+    void inject(SampleApplication app);
+
     @Component.Builder
     interface Builder {
-        @BindsInstance Builder application(SampleApplication application);
+        @BindsInstance
+        Builder application(SampleApplication application);
 
         AppComponent build();
     }
-
-    void inject(SampleApplication app);
 }

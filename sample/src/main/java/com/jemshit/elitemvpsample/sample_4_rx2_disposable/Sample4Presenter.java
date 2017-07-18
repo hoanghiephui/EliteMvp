@@ -35,7 +35,8 @@ class Sample4Presenter extends Sample4Contract.Presenter {
         randomGenerator = new Random();
     }
 
-    @Override public void createList() {
+    @Override
+    public void createList() {
         List<String> list = new ArrayList<>(3);
         for (int i = 0; i < 3; i++) {
             // Random number between [50-100]
@@ -51,16 +52,19 @@ class Sample4Presenter extends Sample4Contract.Presenter {
         addToOnCreateDisposables(
                 stringObservable.subscribeWith(new DisposableObserver<String>() {
 
-                    @Override public void onNext(@NonNull String s) {
+                    @Override
+                    public void onNext(@NonNull String s) {
                         if (isViewAttached())
                             getView().showList(s);
                     }
 
-                    @Override public void onError(@NonNull Throwable e) {
+                    @Override
+                    public void onError(@NonNull Throwable e) {
                         // example: getView().showError(e.getMessage())
                     }
 
-                    @Override public void onComplete() {
+                    @Override
+                    public void onComplete() {
 
                     }
                 })

@@ -47,7 +47,9 @@ public class EliteRx1Presenter<V extends EliteView> extends ElitePresenter<V> {
     /**
      * Creates <b>CompositeSubscription</b> that lives between <b>attachView(V)</b> and <b>detachView()</b>
      */
-    @UiThread @Override @CallSuper
+    @UiThread
+    @Override
+    @CallSuper
     public void attachView(V view) {
         super.attachView(view);
         subsAttachLifecycle = new CompositeSubscription();
@@ -56,7 +58,9 @@ public class EliteRx1Presenter<V extends EliteView> extends ElitePresenter<V> {
     /**
      * Unsubscribes from <b>CompositeSubscription</b> that lives between <b>attachView(V)</b> and <b>detachView()</b>
      */
-    @UiThread @Override @CallSuper
+    @UiThread
+    @Override
+    @CallSuper
     public void detachView() {
         if (subsAttachLifecycle != null && !subsAttachLifecycle.isUnsubscribed())
             subsAttachLifecycle.unsubscribe();
@@ -67,7 +71,8 @@ public class EliteRx1Presenter<V extends EliteView> extends ElitePresenter<V> {
     /**
      * Unsubscribes from <b>CompositeSubscription</b> that lives between <b>Constructor</b> and <b>onDestroy()</b>.
      */
-    @Override @CallSuper
+    @Override
+    @CallSuper
     public void onDestroy() {
         if (subsAllLifecycle != null && !subsAllLifecycle.isUnsubscribed())
             subsAllLifecycle.unsubscribe();

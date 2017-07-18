@@ -36,7 +36,8 @@ public class Sample2Activity extends AppCompatActivity implements Sample2Contrac
 
     private Sample2Contract.Presenter presenter;
 
-    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample_adder);
         if (getSupportActionBar() != null) {
@@ -55,7 +56,8 @@ public class Sample2Activity extends AppCompatActivity implements Sample2Contrac
         input2 = (EditText) findViewById(R.id.input_sampleAdder_2);
         AppCompatButton buttonAdd = (AppCompatButton) findViewById(R.id.button_sampleAdder_add);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
                 // Call Presenter Method
                 if (!TextUtils.isEmpty(input1.getText().toString()) && !TextUtils.isEmpty(input2.getText().toString()))
                     presenter.calculateSum(
@@ -66,12 +68,14 @@ public class Sample2Activity extends AppCompatActivity implements Sample2Contrac
     }
 
     // Called by Presenter
-    @Override public void showSum(String sum) {
+    @Override
+    public void showSum(String sum) {
         textSum.setText(sum);
     }
 
     // Detach View from Presenter
-    @Override protected void onDestroy() {
+    @Override
+    protected void onDestroy() {
         super.onDestroy();
         presenter.detachView();
     }

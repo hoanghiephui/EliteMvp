@@ -20,25 +20,27 @@ package com.jemshit.elitemvpsample;
 import android.app.Activity;
 import android.app.Application;
 
-import com.jemshit.elitemvpsample.sample_6_dagger_injection.di.DaggerAppComponent;
+//import com.jemshit.elitemvpsample.sample_6_dagger_injection.di.DaggerAppComponent;
 
 import javax.inject.Inject;
 
+import dagger.android.DaggerApplication;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 
 // All of these are just for Dagger 2
 public class SampleApplication extends Application implements HasActivityInjector {
-    @Inject DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
+    @Inject
+    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        DaggerAppComponent
+        /*DaggerAppComponent
                 .builder()
                 .application(this)
                 .build()
-                .inject(this);
+                .inject(this);*/
     }
 
     @Override

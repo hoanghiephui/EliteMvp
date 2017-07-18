@@ -47,7 +47,9 @@ public class EliteRx2Presenter<V extends EliteView> extends ElitePresenter<V> {
     /**
      * Creates <b>CompositeDisposable</b> that lives between <b>attachView(V)</b> and <b>detachView()</b>
      */
-    @UiThread @Override @CallSuper
+    @UiThread
+    @Override
+    @CallSuper
     public void attachView(V view) {
         super.attachView(view);
         disposablesAttachLifecycle = new CompositeDisposable();
@@ -56,7 +58,9 @@ public class EliteRx2Presenter<V extends EliteView> extends ElitePresenter<V> {
     /**
      * Unsubscribes from <b>CompositeDisposable</b> that lives between <b>attachView(V)</b> and <b>detachView()</b>
      */
-    @UiThread @Override @CallSuper
+    @UiThread
+    @Override
+    @CallSuper
     public void detachView() {
         if (disposablesAttachLifecycle != null && !disposablesAttachLifecycle.isDisposed())
             disposablesAttachLifecycle.dispose();
@@ -67,7 +71,8 @@ public class EliteRx2Presenter<V extends EliteView> extends ElitePresenter<V> {
     /**
      * Unsubscribes from <b>CompositeDisposable</b> that lives between <b>Constructor</b> and <b>onDestroy()</b>.
      */
-    @Override @CallSuper
+    @Override
+    @CallSuper
     public void onDestroy() {
         if (disposablesAllLifecycle != null && !disposablesAllLifecycle.isDisposed())
             disposablesAllLifecycle.dispose();

@@ -19,11 +19,10 @@ package com.jemshit.elitemvpsample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.jemshit.elitemvp.view.activitys.BaseActivity;
 import com.jemshit.elitemvpsample.sample_1_basic_presenter.Sample1Activity;
 import com.jemshit.elitemvpsample.sample_2_custom_presenter.Sample2Activity;
 import com.jemshit.elitemvpsample.sample_3_rx1_subscription.Sample3Activity;
@@ -32,7 +31,7 @@ import com.jemshit.elitemvpsample.sample_5_nullview_presenter.Sample5Activity;
 import com.jemshit.elitemvpsample.sample_6_dagger_injection.Sample6Activity;
 import com.jemshit.elitemvpsample.sample_7_nullview_rx1_presenter.Sample7Activity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private Button buttonS1;
     private Button buttonS2;
@@ -42,9 +41,13 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonS6;
     private Button buttonS7;
 
-    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initOnCreate(Bundle savedInstanceState) {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(getString(R.string.app_name));
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -53,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
         findViewByIds();
         setClickListeners();
+    }
+
+    @Override
+    protected void onSubscribeEvent(Object object) {
+
     }
 
     private void findViewByIds() {
@@ -67,43 +75,50 @@ public class MainActivity extends AppCompatActivity {
 
     private void setClickListeners() {
         buttonS1.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Sample1Activity.class));
             }
         });
 
         buttonS2.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Sample2Activity.class));
             }
         });
 
         buttonS3.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Sample3Activity.class));
             }
         });
 
         buttonS4.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Sample4Activity.class));
             }
         });
 
         buttonS5.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Sample5Activity.class));
             }
         });
 
         buttonS6.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Sample6Activity.class));
             }
         });
 
         buttonS7.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Sample7Activity.class));
             }
         });

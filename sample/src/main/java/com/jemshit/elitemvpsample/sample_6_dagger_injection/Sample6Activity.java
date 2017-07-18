@@ -34,13 +34,14 @@ import dagger.android.AndroidInjection;
 
 public class Sample6Activity extends AppCompatActivity implements Sample6Contract.View {
 
+    @Inject
+    Sample6Contract.Presenter presenter;
     private TextView textSum;
     private EditText input1;
     private EditText input2;
 
-    @Inject Sample6Contract.Presenter presenter;
-
-    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
 
         super.onCreate(savedInstanceState);
@@ -59,7 +60,8 @@ public class Sample6Activity extends AppCompatActivity implements Sample6Contrac
         input2 = (EditText) findViewById(R.id.input_sampleAdder_2);
         AppCompatButton buttonAdd = (AppCompatButton) findViewById(R.id.button_sampleAdder_add);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
                 // Call Presenter Method
                 if (!TextUtils.isEmpty(input1.getText().toString()) && !TextUtils.isEmpty(input2.getText().toString()))
                     presenter.calculateSum(
@@ -70,12 +72,14 @@ public class Sample6Activity extends AppCompatActivity implements Sample6Contrac
     }
 
     // Called by Presenter
-    @Override public void showSum(String sum) {
+    @Override
+    public void showSum(String sum) {
         textSum.setText(sum);
     }
 
     // Destroy (Detach View from) Presenter
-    @Override protected void onDestroy() {
+    @Override
+    protected void onDestroy() {
         super.onDestroy();
         presenter.onDestroy();
     }

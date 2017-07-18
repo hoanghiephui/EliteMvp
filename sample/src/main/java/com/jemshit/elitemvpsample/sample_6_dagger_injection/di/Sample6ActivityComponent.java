@@ -37,12 +37,14 @@ interface Sample6ActivityComponent extends AndroidInjector<Sample6Activity> {
 
     @Module
     abstract class BindsModule {
-        @Binds @ActivityScope
-        abstract Sample6Contract.Presenter providePresenter(Sample6Presenter p);
-
-        @Provides @ActivityScope
+        @Provides
+        @ActivityScope
         static Class<Sample6Contract.View> provideView() {
             return Sample6Contract.View.class;
         }
+
+        @Binds
+        @ActivityScope
+        abstract Sample6Contract.Presenter providePresenter(Sample6Presenter p);
     }
 }

@@ -53,7 +53,9 @@ public class EliteNullViewRx1Presenter<V extends EliteView> extends EliteRx1Pres
     /**
      * Returns attached <b>View</b> if exists, <b>No Operation Empty View</b> otherwise
      */
-    @Nullable @Override @CallSuper
+    @Nullable
+    @Override
+    @CallSuper
     protected V getView() {
         if (!isViewAttachedOnce)
             throw new RuntimeException("No View has ever been attached to this Presenter.");

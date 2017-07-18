@@ -37,7 +37,9 @@ public class ElitePresenter<V extends EliteView> implements EliteCorePresenter<V
      *
      * @param view instance of {@link EliteView EliteView}
      */
-    @UiThread @Override @CallSuper
+    @UiThread
+    @Override
+    @CallSuper
     public void attachView(V view) {
         this.view = view;
     }
@@ -48,7 +50,9 @@ public class ElitePresenter<V extends EliteView> implements EliteCorePresenter<V
      *
      * @return V instance of {@link EliteView EliteView} that is attached to this <b>Presenter</b>
      */
-    @UiThread @Nullable @CallSuper
+    @UiThread
+    @Nullable
+    @CallSuper
     protected V getView() {
         return view;
     }
@@ -56,7 +60,8 @@ public class ElitePresenter<V extends EliteView> implements EliteCorePresenter<V
     /**
      * Helper method that returns if <b>View</b> is attached to this <b>Presenter</b>.
      */
-    @UiThread @CallSuper
+    @UiThread
+    @CallSuper
     protected boolean isViewAttached() {
         return view != null;
     }
@@ -64,8 +69,10 @@ public class ElitePresenter<V extends EliteView> implements EliteCorePresenter<V
     /**
      * Detaches attached {@link EliteView EliteView} instance from this <b>Presenter</b>
      */
-    @UiThread @CallSuper
-    @Override public void detachView() {
+    @UiThread
+    @CallSuper
+    @Override
+    public void detachView() {
         if (view != null) {
             view = null;
         }

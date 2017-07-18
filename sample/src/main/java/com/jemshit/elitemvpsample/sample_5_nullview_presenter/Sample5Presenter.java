@@ -24,7 +24,8 @@ class Sample5Presenter extends Sample5Contract.Presenter {
         super(viewType);
     }
 
-    @Override public void calculateSum(int input1, int input2) {
+    @Override
+    public void calculateSum(int input1, int input2) {
         // No Need for this control now
         // if (isViewAttached())
         getView().showSum(String.valueOf(input1 + input2));

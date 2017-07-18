@@ -34,7 +34,8 @@ class Sample3Presenter extends Sample3Contract.Presenter {
         randomGenerator = new Random();
     }
 
-    @Override public void createList() {
+    @Override
+    public void createList() {
         List<String> list = new ArrayList<>(3);
         for (int i = 0; i < 3; i++) {
             // Random number between [50-100]
@@ -49,15 +50,18 @@ class Sample3Presenter extends Sample3Contract.Presenter {
         // Add this Subscription to CompositeSubscription (that lives between Constructor-onDestroy())
         addToOnCreateSubscriptions(
                 stringObservable.subscribe(new Subscriber<String>() {
-                    @Override public void onCompleted() {
+                    @Override
+                    public void onCompleted() {
 
                     }
 
-                    @Override public void onError(Throwable e) {
+                    @Override
+                    public void onError(Throwable e) {
                         // example: getView().showError(e.getMessage())
                     }
 
-                    @Override public void onNext(String s) {
+                    @Override
+                    public void onNext(String s) {
                         if (isViewAttached())
                             getView().showList(s);
                     }
