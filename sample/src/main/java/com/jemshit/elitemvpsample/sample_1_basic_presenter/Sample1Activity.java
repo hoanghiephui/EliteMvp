@@ -26,9 +26,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.jemshit.elitemvp.view.activitys.BaseActivity;
 import com.jemshit.elitemvpsample.R;
 
-public class Sample1Activity extends AppCompatActivity implements Sample1Contract.View {
+public class Sample1Activity extends BaseActivity implements Sample1Contract.View {
 
     private TextView textSum;
     private EditText input1;
@@ -36,10 +37,26 @@ public class Sample1Activity extends AppCompatActivity implements Sample1Contrac
 
     private Sample1Contract.Presenter presenter;
 
+    // Called by Presenter
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sample_adder);
+    public void showSum(String sum) {
+        textSum.setText(sum);
+    }
+
+    // Destroy (Detach View from) Presenter
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_sample_adder;
+    }
+
+    @Override
+    protected void initOnCreate(Bundle savedInstanceState) {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(getString(R.string.example_basic));
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -67,16 +84,4 @@ public class Sample1Activity extends AppCompatActivity implements Sample1Contrac
         });
     }
 
-    // Called by Presenter
-    @Override
-    public void showSum(String sum) {
-        textSum.setText(sum);
-    }
-
-    // Destroy (Detach View from) Presenter
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        presenter.onDestroy();
-    }
 }

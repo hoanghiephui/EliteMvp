@@ -18,8 +18,6 @@
 package com.jemshit.elitemvpsample.sample_4_rx2_disposable;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.View;
@@ -47,12 +45,23 @@ public class Sample4Activity extends BaseActivity implements Sample4Contract.Vie
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.onDestroy();
     }
 
     @Override
     protected int getLayoutID() {
         return R.layout.activity_sample_rx;
+    }
+
+    @Override
+    protected void initPresenter() {
+        // Initialize Presenter
+        presenter = new Sample4Presenter();
+    }
+
+    @Override
+    protected void attachView() {
+        // Attach View to it
+        presenter.attachView(this);
     }
 
     @Override
@@ -62,10 +71,6 @@ public class Sample4Activity extends BaseActivity implements Sample4Contract.Vie
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        // Initialize Presenter
-        presenter = new Sample4Presenter();
-        // Attach View to it
-        presenter.attachView(this);
 
         // FindViewByIds, ClickListeners
         textView = (TextView) findViewById(R.id.text_sampleRx_list);
@@ -86,6 +91,11 @@ public class Sample4Activity extends BaseActivity implements Sample4Contract.Vie
             Toast.makeText(this, "A", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "onSubscribeEvent: ");
         }
+    }
+
+    @Override
+    protected void onDestroyPresenter() {
+        presenter.onDestroy();
     }
 
 }

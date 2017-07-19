@@ -47,6 +47,16 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected void initPresenter() {
+
+    }
+
+    @Override
+    protected void attachView() {
+
+    }
+
+    @Override
     protected void initOnCreate(Bundle savedInstanceState) {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(getString(R.string.app_name));
@@ -60,6 +70,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onSubscribeEvent(Object object) {
+
+    }
+
+    @Override
+    protected void onDestroyPresenter() {
 
     }
 

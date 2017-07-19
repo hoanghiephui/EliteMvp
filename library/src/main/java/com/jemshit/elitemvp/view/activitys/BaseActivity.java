@@ -44,6 +44,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutID());
+        initPresenter();
+        attachView();
         disposable = new CompositeDisposable();
         mUnbinder = ButterKnife.bind(this);
         onSubscribeEventRx();
@@ -61,13 +63,35 @@ public abstract class BaseActivity extends AppCompatActivity {
             disposable.dispose();
             disposable.clear();
         }
+
+        onDestroyPresenter();
     }
 
     protected abstract int getLayoutID();
 
+    /**
+     * Initialize Presenter
+     */
+    protected void initPresenter() {}
+
+    /**
+     * Attach View to it
+     */
+    protected void attachView(){}
+
+
     protected abstract void initOnCreate(Bundle savedInstanceState);
 
-    protected abstract void onSubscribeEvent(Object object);
+    /**
+     * Subsrcibe event rx
+     * @param object
+     */
+    protected void onSubscribeEvent(Object object){}
+
+    /**
+     * Destroy (Detach View from) Presenter. Also unsubscribes from Subscriptions
+     */
+    protected void onDestroyPresenter(){}
 
     private synchronized void onSubscribeEventRx() {
         disposable.add(RxBus.getInstance()
