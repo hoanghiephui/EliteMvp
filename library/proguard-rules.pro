@@ -100,3 +100,6 @@
 
 #retrofit
 -dontwarn javax.annotation.**
+
+-keep class **$$ViewBinder { *; }
+-keep class **$$ViewInjector { *; }
