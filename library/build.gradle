@@ -78,4 +78,5 @@ dependencies {
         // Excludes the support library because it's already included by Glide.
         transitive = false
     }
+    compile 'pub.devrel:easypermissions:0.4.2'
 }
