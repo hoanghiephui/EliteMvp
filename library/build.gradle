@@ -79,4 +79,5 @@ dependencies {
         transitive = false
     }
     compile 'pub.devrel:easypermissions:0.4.2'
+    compile 'com.dmitrymalkovich.android:material-design-dimens:1.4'
 }
